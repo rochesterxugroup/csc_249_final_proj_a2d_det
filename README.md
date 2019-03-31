@@ -65,6 +65,12 @@ The baseline model we choose is Faster-RCNN with Feature Pyramid Network, whose 
 
 
 
+**COCO-pretrained model**
+
+If you want to use the MS-COCO pretrained model., please download them from <https://github.com/facebookresearch/Detectron/blob/master/MODEL_ZOO.md>. Then, add the `--load_detectron` flag in `scripts/train.sh` with the path to the downloaded pickle file.
+
+
+
 ## Acknowledgement
 
 Thanks to [@roytseng-tw](https://github.com/roytseng-tw) for <https://github.com/roytseng-tw/Detectron.pytorch>
