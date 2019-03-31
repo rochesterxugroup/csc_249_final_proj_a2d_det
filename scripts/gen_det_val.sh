@@ -4,7 +4,7 @@ PYTHONPATH='./':$PYTHONPATH python eval/baseline_gen_det_result.py \
     --dataset A2D \
     --cfg model_cfgs/e2e_faster_rcnn_R-50-FPN_1x.yaml \
     --image_dir $DATA_SET_ROOT/pngs320H \
-    --test_lst $DATA_SET_ROOT/list/small_a2d_for_249/val.txt \
+    --test_lst $DATA_SET_ROOT/list/val.txt \
     --root $DATA_SET_ROOT/pngs320H \
     --flow_root $DATA_SET_ROOT/flow \
     --anno_root $DATA_SET_ROOT/Annotations/mat \
