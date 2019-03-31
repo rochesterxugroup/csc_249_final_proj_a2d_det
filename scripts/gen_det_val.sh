@@ -6,7 +6,6 @@ PYTHONPATH='./':$PYTHONPATH python eval/baseline_gen_det_result.py \
     --image_dir $DATA_SET_ROOT/pngs320H \
     --test_lst $DATA_SET_ROOT/list/val.txt \
     --root $DATA_SET_ROOT/pngs320H \
-    --flow_root $DATA_SET_ROOT/flow \
     --anno_root $DATA_SET_ROOT/Annotations/mat \
     --id_map_file $DATA_SET_ROOT/list/actor_id_action_id.txt \
     --det_result_pkl /home/cxu-serve/p1/zli82/249_final_proj_det/gen_det/model_step4749_baseline_small_val.pkl \

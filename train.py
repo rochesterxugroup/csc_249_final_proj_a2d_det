@@ -158,6 +158,8 @@ def main():
 
     if not args.debug:
         assert args.output_dir is not None
+        if not os.path.exists(args.output_dir):
+            os.mkdir(args.output_dir)
         cfg.OUTPUT_DIR = args.output_dir
 
     assert args.dataset == 'A2D'

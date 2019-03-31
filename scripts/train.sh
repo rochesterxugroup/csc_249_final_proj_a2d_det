@@ -13,5 +13,5 @@ PYTHONPATH='./':$PYTHONPATH python train.py \
     --dataset A2D \
     --use_tfboard \
     --segment_length 2 \
-    --output_dir /home/cxu-serve/p1/zli82/249_final_proj_det/train_output \
+    --output_dir ./train_output \
     --snapshot_iters 4750
