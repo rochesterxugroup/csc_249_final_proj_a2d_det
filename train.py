@@ -110,7 +110,7 @@ def parse_args():
     parser.add_argument('--id_map_file', type=str, required=True,
                         help='path to a txt file containing the map between actor_action id to actor id and action id')
     parser.add_argument('--frame_root', type=str, required=True, help='directory of video frames')
-    # parser.add_argument('--flow_root', type=str, required=True, help='directory of ')
+    parser.add_argument('--flow_root', type=str)
     parser.add_argument('--segment_length', type=int, default=2)
     parser.add_argument('--debug', action='store_true',
                         help='turn on debug mode. If it\'s on: '
