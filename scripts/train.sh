@@ -7,7 +7,7 @@ PYTHONPATH='./':$PYTHONPATH python train.py \
     --nw 0 \
     --lr 2e-4 \
     --train_lst $DATA_SET_ROOT/list/train.txt \
-    --annotation_root $DATA_SET_ROOT/Annotations/new_mat \
+    --annotation_root $DATA_SET_ROOT/Annotations/mat \
     --frame_root $DATA_SET_ROOT/pngs320H \
     --id_map_file $DATA_SET_ROOT/list/actor_id_action_id.txt \
     --dataset A2D \
