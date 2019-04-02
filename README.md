@@ -56,6 +56,8 @@ cd ..
 
    Please make sure to change the `--load_ckpt` with the new checkpoint model.
 
+   Please rename your pickle file to `det.pkl` in the submission.
+
 
 
 ## Data Processing
