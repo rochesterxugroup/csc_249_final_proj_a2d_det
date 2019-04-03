@@ -68,7 +68,7 @@ def parse_args():
 
     parser.add_argument('--test_lst', type=str, required=True)
     parser.add_argument('--root', type=str, required=True)
-    parser.add_argument('--flow_root', type=str, required=True)
+    parser.add_argument('--flow_root', type=str)
     parser.add_argument('--anno_root', type=str, required=True)
     parser.add_argument('--id_map_file', type=str, required=True)
     parser.add_argument('--det_result_pkl', type=str, required=True)
