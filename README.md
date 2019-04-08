@@ -1,4 +1,6 @@
 # Actor-Action Detection
+**UPDATE: Please update this repository (see README.md in the parent folder) and follow the new installation guide to compile the code again.**
+
 Please remember to activate virtual environment by `conda activate pytorch_0_4_1`
 
 
