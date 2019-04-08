@@ -10,7 +10,9 @@ Please run the following command before running the code
 ```bash
 cd mask_rcnn
 bash make.sh
-cd ..
+cd model/roi_align
+bash make.sh
+cd ../../../
 ```
 
 
