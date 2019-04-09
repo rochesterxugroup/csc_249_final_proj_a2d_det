@@ -122,7 +122,7 @@ def get_flow_blob(target_scale, target_max_size, vid_frm_idx):
         prev_frame = None
         for f_idx in range(cur_frm_idx - int(cfg.A2D.SEGMENT_LENGTH / 2),
                         cur_frm_idx + int(cfg.A2D.SEGMENT_LENGTH / 2) + 1):
-            frame_fpath = os.path.join(frame_root, video_name, '%05d' % f_idx + '.png')
+            frame_fpath = os.path.join(cfg.A2D.ROOT, vid, '%05d' % f_idx + '.png')
             assert os.path.exists(frame_fpath)
             cur_frame = cv2.imread(frame_fpath)
             cur_frame = cv2.cvtColor(cur_frame, cv2.COLOR_BGR2GRAY)
