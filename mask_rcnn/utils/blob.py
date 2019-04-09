@@ -104,19 +104,38 @@ def get_flow_blob(target_scale, target_max_size, vid_frm_idx):
 
     flows = []
     shared_flow_scales = None
-    for f_idx in range(cur_frm_idx - int(cfg.A2D.SEGMENT_LENGTH / 2),
-                       cur_frm_idx + int(cfg.A2D.SEGMENT_LENGTH / 2)):
-        flow_path = os.path.join(cfg.A2D.FLOW_ROOT, vid, '%05d' % f_idx + '.flo')
-        assert os.path.exists(flow_path)
-        flow = mmcv.flowread(flow_path)
-        flows_with_diff_scales, computed_flow_scales = prep_flow_for_blob(
-            flow, cfg.A2D.FLOW_MAX_MAG, [target_scale], target_max_size, clip_mag=cfg.A2D.CLIP_FLOW_MAG)
-        three_channel_flow = flow_to_flow_img(flows_with_diff_scales[0])
-        flows.append(three_channel_flow)
-        if shared_flow_scales is not None:
-            assert computed_flow_scales[0] == shared_flow_scales
-        else:
-            shared_flow_scales = computed_flow_scales[0]
+    if cfg.A2D.LOAD_FLOW:
+        for f_idx in range(cur_frm_idx - int(cfg.A2D.SEGMENT_LENGTH / 2),
+                        cur_frm_idx + int(cfg.A2D.SEGMENT_LENGTH / 2)):
+            flow_path = os.path.join(cfg.A2D.FLOW_ROOT, vid, '%05d' % f_idx + '.flo')
+            assert os.path.exists(flow_path)
+            flow = mmcv.flowread(flow_path)
+            flows_with_diff_scales, computed_flow_scales = prep_flow_for_blob(
+                flow, cfg.A2D.FLOW_MAX_MAG, [target_scale], target_max_size, clip_mag=cfg.A2D.CLIP_FLOW_MAG)
+            three_channel_flow = flow_to_flow_img(flows_with_diff_scales[0])
+            flows.append(three_channel_flow)
+            if shared_flow_scales is not None:
+                assert computed_flow_scales[0] == shared_flow_scales
+            else:
+                shared_flow_scales = computed_flow_scales[0]
+    else:
+        prev_frame = None
+        for f_idx in range(cur_frm_idx - int(cfg.A2D.SEGMENT_LENGTH / 2),
+                        cur_frm_idx + int(cfg.A2D.SEGMENT_LENGTH / 2) + 1):
+            frame_fpath = os.path.join(frame_root, video_name, '%05d' % f_idx + '.png')
+            assert os.path.exists(frame_fpath)
+            cur_frame = cv2.imread(frame_fpath)
+            cur_frame = cv2.cvtColor(cur_frame, cv2.COLOR_BGR2GRAY)
+            if prev_frame is not None:
+                flow = cv2.calcOpticalFlowFarneback(prev_frame, cur_frame, None, 0.5, 3, 15, 3, 5, 1.2, 0)
+                flows_with_diff_scales, computed_flow_scales = prep_flow_for_blob(
+                    flow, cfg.A2D.FLOW_MAX_MAG, [target_scale], target_max_size, clip_mag=cfg.A2D.CLIP_FLOW_MAG)
+                three_channel_flow = flow_to_flow_img(flows_with_diff_scales[0])
+                flows.append(three_channel_flow)
+                if shared_flow_scales is not None:
+                    assert computed_flow_scales[0] == shared_flow_scales
+                else:
+                    shared_flow_scales = computed_flow_scales[0]
 
     blob = flow_list_to_blob([flows])
     height, width = blob.shape[2], blob.shape[3]
