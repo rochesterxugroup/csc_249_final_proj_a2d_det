@@ -136,6 +136,7 @@ def get_flow_blob(target_scale, target_max_size, vid_frm_idx):
                     assert computed_flow_scales[0] == shared_flow_scales
                 else:
                     shared_flow_scales = computed_flow_scales[0]
+            prev_frame = cur_frame
 
     blob = flow_list_to_blob([flows])
     height, width = blob.shape[2], blob.shape[3]
