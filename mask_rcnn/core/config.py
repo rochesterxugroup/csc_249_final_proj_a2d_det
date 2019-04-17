@@ -984,7 +984,7 @@ __C.POOLING_SIZE = 7
 __C.CROP_RESIZE_WITH_MAX_POOL = True
 
 # [Infered value]
-__C.CUDA = False
+__C.CUDA = True
 
 __C.DEBUG = False
 
